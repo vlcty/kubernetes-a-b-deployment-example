@@ -6,7 +6,7 @@ metadata:
   labels:
     deployment: abdeploy
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       deployment: abdeploy
@@ -26,33 +26,33 @@ spec:
             - name: COLOR
               value: red
 
-# ---
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: ab-deployment-b
-#   labels:
-#     deployment: abdeploy
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       deployment: abdeploy
-#   template:
-#     metadata:
-#       labels:
-#         deployment: abdeploy
-#     spec:
-#       containers:
-#         - name: abdeploy
-#           image: color:0.0.1
-#           imagePullPolicy: Never
-#           ports:
-#             - name: http
-#               containerPort: 8080
-#           env:
-#             - name: COLOR
-#               value: green
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ab-deployment-b
+  labels:
+    deployment: abdeploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: abdeploy
+  template:
+    metadata:
+      labels:
+        deployment: abdeploy
+    spec:
+      containers:
+        - name: abdeploy
+          image: color:0.0.1
+          imagePullPolicy: Never
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: COLOR
+              value: green
 
 ---
 apiVersion: v1
